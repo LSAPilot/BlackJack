@@ -1,4 +1,5 @@
 import { Family, Kind } from "../enums/enums.js";
+import { Card } from "./card.js";
 
 class Deck {
     constructor(cards) {
@@ -13,13 +14,12 @@ class Deck {
         let cardDeck = [];
 
         Object.values(Family).forEach(family => {
-            let emptyArr = [];
-            cardDeck.push(emptyArr);
-            Object.keys(Kind).forEach(kind => {
-                emptyArr.push(kind);
-                this.cards = cardDeck;
+            Object.entries(Kind).forEach(([kindName, kindValue]) => {
+                const card = new Card(kindName, family, kindValue);
+                cardDeck.push(card);
             })
         });
+        this.cards = cardDeck;
     }
 }
 
